@@ -2,10 +2,56 @@
 <html>
 <head>
 	<title>Canvas的drawImage方法</title>
+	<style type="text/css">
+		#myCanvas {background: #999;}
+		#myCanvas1 {background: #999;}
+	</style>
 </head>
 <body>
+	<img id="myImage" src="images/magnifier-small.jpg" alt="myImage">
+	<canvas id="myCanvas" width="600" height="500">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+	<canvas id="myCanvas1" width="600" height="500">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
 	<script>
 		
+		(function(win, doc) {
+
+			var $ = function(domId) {return doc.getElementById(domId);}
+
+			// begin draw image
+			var image = $('myImage');
+			var canvas = $('myCanvas');
+			var context = canvas.getContext('2d');
+
+			var canvas1 = $('myCanvas1');
+			var context1 = canvas1.getContext('2d');
+
+			// drawImage(image, dx, dy)
+			// 不能直接写,需要等图片加载完之后才可以
+			// context.drawImage(image, 0, 0); // 错误写法
+			image.onload = function() {
+				context.drawImage(image, 0, 0);
+			};
+
+			// drawImage(image, dx, dy, dw, dh)
+			image.onload = function() {
+				context.drawImage(image, 50, 50, 300, 300);
+			};
+
+			// drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
+			// 绘制图像 并裁剪
+			// dx, dy, dw, dh绘制图像, sx, sy, sw, sh用于裁剪
+			image.onload = function() {
+				context.drawImage(image, 50, 50, 200, 200, 50, 50, 300, 300);
+				context1.drawImage(image, 0, 0, 400, 400, 50, 50, 300, 300);				
+			};
+			
+
+		})(window, document);
+
 	</script>
 </body>
 </html>
