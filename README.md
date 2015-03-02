@@ -11,9 +11,7 @@ To draw images onto the canvas, the drawImage method can be used.
 This method can be invoked with three different sets of arguments:
 
 drawImage(image, dx, dy)
-
 drawImage(image, dx, dy, dw, dh)
-
 drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
 
 ...
